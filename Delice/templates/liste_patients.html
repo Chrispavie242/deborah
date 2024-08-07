@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-groupe {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-control a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .form-control a:hover {
+            text-decoration: underline;
+        }
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* CSS original du navbar */
+        .navbar {
+            background-color: #87CEEB; /* Sky blue */
+            border: none;
+            border-radius: 0;
+            padding: 10px 0;
+        }
+        
+        .navbar-brand i {
+            margin-right: 5px;
+        }
+        .navbar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .navbar-nav > li {
+            list-style: none;
+        }
+        .navbar-nav > li > a {
+            color: #ffffff !important;
+            font-weight: bold;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .navbar-nav > li > a:hover {
+            background-color: #6ca6cd; /* Darker sky blue */
+            color: #ffffff !important;
+            border-radius: 5px;
+        }
+        .navbar-toggle {
+            border: none;
+            background-color: transparent;
+        }
+        .navbar-toggle .icon-bar {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <section class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+             <div class="navbar-header">
+                  <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                       <span class="icon icon-bar"></span>
+                       <span class="icon icon-bar"></span>
+                       <span class="icon icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="{% url 'urlhome' %}">Accueil</a>
+                  <a class="navbar-brand" href="{% url 'redirection' %}"">Réalisation des Opérations</a>
+             </div>
+             <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav navbar-right">
+                       <li><a href="{% url 'urlhome' %}" class="smoothScroll">Accueil</a></li>
+                    
+                       
+                  </ul>
+             </div>
+        </div>
+    </section>
+
+    <h2><center>Liste de tous les Patients confondus</center></h2>
+    {% for patient in patients %}
+        <div class="container form-groupe">
+            <div class="form-control">
+                {{ patient.nom }} {{ patient.prenom }} - 
+                {% if patient.consultation_set.all %}
+                    <a href="{% url 'statut_patient' patient.id %}">Consulté</a>
+                {% else %}
+                    <a href="{% url 'consulter_patient' patient.id %}">Cliquer ici pour Consulter</a>
+                {% endif %}
+                {% if patient.hospitalisation_set.all %}
+                    - <a href="{% url 'statut_patient' patient.id %}">Hospitalisé</a>
+                {% else %}
+                    - <a href="{% url 'hospitaliser_patient' patient.id %}">Cliquer ici pour Hospitaliser</a>
+                {% endif %}
+                {% if patient.patientexamine_set.all %}
+                    - Examiné
+                {% else %}
+                    - <a href="{% url 'ajouter_patient_examine' patient.id %}">Cliquer ici pour Examiner</a>
+                {% endif %}
+                <a href="{% url 'modifier_patient' patient.id %}">- modifier</a>
+                <a href="{% url 'supprimer_patient' patient.id %}">- supprimer</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    <center><a class="footer-link" href="{% url 'redirection' %}">cliquer ici pour retourner à la page de la réalisation des calculs</a></center>
+</body>
+</html>

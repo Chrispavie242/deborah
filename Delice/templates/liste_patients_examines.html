@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Patients Examines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h3 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-groupe {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-control a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .form-control a:hover {
+            text-decoration: underline;
+        }
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Liste des Patients Examines</h3>
+
+<div class="container form-groupe">
+    {% for patient_examine in patients_examines %}
+    <div class="form-control">
+        {{ patient_examine.patient }} - {{ patient_examine.examen }}
+        <a href="{% url 'modifier_patient_examine' patient_examine.id %}">modifier</a>
+        <a href="{% url 'supprimer_patient_examine' patient_examine.id %}">supprimer</a>
+    </div>
+    {% endfor %}
+</div>
+
+<center><a class="footer-link" href="{% url 'redirection' %}">cliquer ici pour retourner à la page de la réalisation des calculs</a></center>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport des ventes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .summary {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Rapport des ventes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Montant total gagné:</th>
+                    <th>Bénéfice total réalisés</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{montant_total}</td>
+                    <td>{{ benefice_total }}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <H2>Detail des ventes</H2>
+        <ul>
+            {% for vente in ventes %}
+            <li>
+                Produit:{{vente.produit.nom}}
+            </li>
+        </ul>
+        <p><center><a href="{% url 'redirection' %}">Voir les opérations</a><br><br></center></p>
+    </div>
+</body>
+</html>

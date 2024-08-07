@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>CONNECTEZ-VOUS</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" id="" placeholder="Entrez votre nom d'utilisateur"><br><br>
+        <input type="mail" name="email" id="" placeholder="Entrez votre mail d'utilisateur"><br><br>
+        <input type="password" name="password" id="" placeholder="Entrez votre password d'utilisateur"><br><br>
+        <input type="password" name="password1" id="" placeholder="confirmerz votre password d'utilisateur"><br><br>
+        <input type="submit" value="Se connecter">
+    </form>
+
+    <a href="{% url 'urllogin' %}">j"ai déjà un compte</a>
+</body>
+</html>

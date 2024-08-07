@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Produits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h3 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-control a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .form-control a:hover {
+            text-decoration: underline;
+        }
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h3>Liste des Produits</h3>
+    
+    {% for produit in produits %}
+    <div class="container form-groupe">
+        <div class="form-control">
+            <p>{{ produit.nom }} - Prix : {{ produit.prix_unitaire }} - Quantité en stock : {{ produit.quantite_stock }}  <a href="{% url 'modifier_produit' produit.id %}">Modifier</a>
+                <a href="{% url 'supprimer_produit' produit.id %}">Supprimer</a>
+                <a href="{% url 'vendre_produit' produit.id %}">Effectuer une vente</a></p>
+            
+        </div>
+    </div>
+    {% endfor %}
+    
+    <center><a class="footer-link" href="{% url 'ajouter_produit' %}"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i>Ajouter un produit</a></center>
+    <center><a class="footer-link" href="{% url 'redirection' %}"><i class="fas fa-arrow-circle-left" style="margin-right: 5px;"></i>Retourner à la page de réalisation des calculs</a></center>
+
+</body>
+</html>

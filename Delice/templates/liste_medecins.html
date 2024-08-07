@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Médecins</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h3 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-control a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .form-control a:hover {
+            text-decoration: underline;
+        }
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h3>Liste des Médecins</h3>
+    
+    {% for medecin in medecins %}
+    <div class="container form-groupe">
+        <div class="form-control">
+            <p>{{ medecin.nom_medecin }} {{ medecin.prenom_medecin }}  <a href="{% url 'modifier_medecin' medecin.id %}">Modifier</a>
+                <a href="{% url 'supprimer_medecin' medecin.id %}">Supprimer</a></p>
+            
+        </div>
+    </div>
+    {% endfor %}
+    
+    <center><a class="footer-link" href="{% url 'redirection' %}">Retourner à la page de réalisation des calculs</a></center>
+</body>
+</html>

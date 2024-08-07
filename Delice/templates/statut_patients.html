@@ -1,0 +1,50 @@
+
+<style>
+    .status-container {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+    h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+    p {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    .consulted, .hospitalized {
+        color: #28a745;
+    }
+    .not-consulted, .not-hospitalized {
+        color: #dc3545;
+    }
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+    <h3><center>Voici le Statut du Patient</center></h3>
+    <center><p>{{ patient.nom }} {{ patient.prenom }}</p></center>
+    {% if patient.consultation_set.all %}
+<center><p>- Consulté</p></center>
+    {% else %}
+<center><p>- Non Consulté</p></center>
+    {% endif %}
+    {% if patient.hospitalisation_set.all %}
+<center><p>- Hospitalisé</p></center>
+    {% else %}
+<center><p>- Hospitalisé</p></center>
+    {% endif %}
+    <center><a href="{% url 'redirection' %}">Voir les opérations</a><br><br></center>

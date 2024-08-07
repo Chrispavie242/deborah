@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block 'corps' %}
+{% load static %}
+<style>
+    form {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    h2 {
+        text-align: center;
+    }
+    input[type="text"], input[type="email"], select {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button[type="submit"] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    a {
+        text-decoration: none;
+        color: #4CAF50;
+    }
+</style>
+    <h3></center>Ajouter un Patient Examine</center></h3>
+    <center><form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form></center>
+    <center><a href="{% url 'redirection' %}">Page d'accueil</a><br><br></center>
+
+{% endblock %}
